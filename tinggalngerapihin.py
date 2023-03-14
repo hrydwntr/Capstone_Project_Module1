@@ -8,20 +8,6 @@ buku_keuangan = [
     {'id':'04', 'judul':'Think and Grow Rich', 'tahun':1937, 'penulis':'Georde Goodman', 'stok':2}
 ]
 
-# buku_id = input('masukan judul : ')
-# for idx, kunci in enumerate(buku_keuangan):
-#     if buku_id == buku_keuangan[idx]['judul']:
-#         buku_keuangan[idx]['id'] = buku_id
-#         print(kunci)
-
-
-
-# # for idx,baru in enumerate(buku_keuangan):
-# # if buku_id == buku_keuangan[idx]['id']:
-# # buku_keuangan[idx]['id'] = data_id
-# # print (baru)
-# # print("\nData Telah Diperbaharui")
-
 # ================================================================================================
 # untuk menu 1
 def daftar_bukuKeuangan():
@@ -29,9 +15,6 @@ def daftar_bukuKeuangan():
     print("ID\t| Judul \t\t\t\t| Tahun\t| Penulis\t\t Stok\t")
     for idx in range(len(buku_keuangan)):
         print(f"{buku_keuangan[idx]['id']} \t| {buku_keuangan[idx]['judul']} \t\t\t| {buku_keuangan[idx]['tahun']}\t| {buku_keuangan[idx]['penulis']}\t {buku_keuangan[idx]['stok']}")
-    # print(f"{buku_keuangan[1]['id']} \t| {buku_keuangan[1]['judul']} \t\t| {buku_keuangan[1]['tahun']}\t| {buku_keuangan[1]['penulis']}\t\t {buku_keuangan[1]['stok']}")
-    # print(f"{buku_keuangan[2]['id']} \t| {buku_keuangan[2]['judul']} \t| {buku_keuangan[2]['tahun']}\t| {buku_keuangan[2]['penulis']}\t {buku_keuangan[2]['stok']}")
-    # print(f"{buku_keuangan[3]['id']} \t| {buku_keuangan[3]['judul']} \t\t\t| {buku_keuangan[3]['tahun']}\t| {buku_keuangan[3]['penulis']}\t {buku_keuangan[3]['stok']}")
 
 # ================================================================================================
 # untuk menu 2
@@ -85,38 +68,39 @@ def hasil_buku_dariId(buku_keuangan, buku_id):
 # -----------------------------------------------------------------------------------
 # untuk menu 1
 def menu_berdasarkanId():
-    while True:
-        keyId = (input("Masukan ID Buku : "))
+    
+    keyId = (input("Masukan ID Buku : "))
 
-        list_id = []
+    list_id = []
 
+    for buku in buku_keuangan:
+        list_id.append(buku['id'])
+
+    if keyId in list_id:
         for buku in buku_keuangan:
-            list_id.append(buku['id'])
+            if buku['id'] == keyId:
+                hasil_buku_dariId(buku_keuangan, keyId)
+            
 
-        if keyId in list_id:
-            for buku in buku_keuangan:
-                if buku['id'] == keyId:
-                    hasil_buku_dariId(buku_keuangan, keyId)
-            break
-
-        else:
-            print('\nBuku tidak ditemukan, Pastikan ID benar')
-            menu_pertama()
+    else:
+        print('\nBuku tidak ditemukan, Pastikan ID benar')
+    menu_pertama()
 
 # -----------------------------------------------------------------------------------
 # untuk menu 1
 def menu_pertama():
-    while True:
-        print(daftar_menuUtama)
-        inputan_user = int(input("Masukan angka (1-3) diantara daftar diatas : "))
-        print()
-        if inputan_user == 1:
-            daftar_bukuKeuangan()
-        elif inputan_user == 2:
-            daftar_bukuKeuangan()
-            menu_berdasarkanId()
-        else:
-            menu_utama()
+    
+    print(daftar_menuUtama)
+    inputan_user = int(input("Masukan angka (1-3) diantara daftar diatas : "))
+    print()
+    if inputan_user == 1:
+        daftar_bukuKeuangan()
+
+    elif inputan_user == 2:
+        daftar_bukuKeuangan()
+        menu_berdasarkanId()
+    else:
+        menu_utama()
 
 # ================================================================================================
 # untuk menu 2
@@ -129,18 +113,20 @@ Opsi_tambahBuku = (''''
 # -----------------------------------------------------------------------------------
 # untuk menu 2
 def menu_kedua():
-    while True:
-        print(Opsi_tambahBuku)
-        inputan_user = (input("Masukan data Buku, tolong pilih diantara (1/2) : "))
-        if inputan_user == '1':
-            # print('menuKedua_tambahBuku')
-            menuKedua_tambahBuku()
+    print(Opsi_tambahBuku)
+    inputan_user = (input("Masukan data Buku, tolong pilih diantara (1/2) : "))
+    if inputan_user == '1':
+        print('menuKedua_tambahBuku')
+        menuKedua_tambahBuku()
 
-        elif inputan_user == '2':
-            menu_utama()
-        else:
-            print("Tolong masukan angka yang tersedia : ")
-            continue
+    elif inputan_user == '2':
+        menu_utama()
+    else:
+        print("Tolong masukan angka yang tersedia : ")
+        menu_kedua()
+        
+
+    
 
 # -----------------------------------------------------------------------------------
 # untuk menu 2
@@ -181,122 +167,122 @@ opsi_editBuku = ('''
 # -----------------------------------------------------------------------------------
 # untuk menu 3
 def menu_ketiga():
-    while True:
-            print(opsi_editBuku)
-            inputan_user = int(input("Kamu memasukin Halaman Edit Buku, Tolong masukan angka diantara (1/2) : "))
+    
+        print(opsi_editBuku)
+        inputan_user = int(input("Kamu memasukin Halaman Edit Buku, Tolong masukan angka diantara (1/2) : "))
             
-            if inputan_user == 1:
-                print(f"\n{menuKetiga_perbaharuiBuku()}")
-            elif inputan_user == 2:
-                menu_utama()
-            else:
-                print("\nPilihan Nomor Tidak Sesuai")
+        if inputan_user == 1:
+            print(f"\n{menuKetiga_perbaharuiBuku()}")
+        elif inputan_user == 2:
+            menu_utama()
+        else:
+            print("\nPilihan Nomor Tidak Sesuai")
 
 # -----------------------------------------------------------------------------------
 # untuk menu 3
 def menuKetiga_perbaharuiBuku():
-    while True:
-        daftar_bukuKeuangan()
-        buku_id = input("\nMasukan ID Buku yang ingin Kamu Perbaharui : ")
-        print()
+    
+    daftar_bukuKeuangan()
+    buku_id = input("\nMasukan ID Buku yang ingin Kamu Perbaharui : ")
+    print()
         
 
-        list_id = []
+    list_id = []
 
-        for buku in buku_keuangan:
-            list_id.append(buku['id'])
+    for buku in buku_keuangan:
+        list_id.append(buku['id'])
 
-        for idx,buku in enumerate(buku_keuangan):
+    for idx,buku in enumerate(buku_keuangan):
             
-            if buku_keuangan[idx]['id'] == buku_id:
-                print(buku)
-                validasi = input("\nKamu yakin ingin melanjutkan?(Ya/Tidak): ")
-                if validasi.lower() == 'tidak':
-                    print("\nPembaharuan dibatalkan")
-                    menu_ketiga()
-                elif validasi.lower() == 'ya':
-                    print(Daftar_editKolom)
-                    pilihan_editBuku = input(f"Pilih data kategori yang ingin Kamu ubah, (diantara 1 sampai 5) : ")
-                    # -------------------------------------------------------------------------
-                    if pilihan_editBuku == '1':
-                        hasil_buku_dariId(buku_keuangan, buku_id)
-                        data_id = input("Masukan ID Baru : ")
-                        validasi_id = input("Kamu yakin ingin melanjutkan?(Ya/Tidak): ")
-                        print()
-                        if validasi_id.lower() == "ya":
-                            for idx,baru in enumerate(buku_keuangan):
-                                if buku_id == buku_keuangan[idx]['id']:
-                                    buku_keuangan[idx]['id'] = data_id
-                                    print (baru)
-                                    print("\nData Telah Diperbaharui")
-                                    menu_ketiga()
-                        elif validasi_id.lower() == "tidak":
-                            print("\nPembaharuan dibatalkan")
-                            menu_ketiga()
-                    # -------------------------------------------------------------------------
-                    elif pilihan_editBuku == '2':
-                        hasil_buku_dariId(buku_keuangan, buku_id)
-                        data_id = input("Masukan Judul Baru : ")
-                        validasi_id = input("Kamu yakin ingin melanjutkan?(Ya/Tidak): ")
-                        print()
-                        if validasi_id.lower() == "ya":
-                            for idx,baru in enumerate(buku_keuangan):
-                                if buku_id == buku_keuangan[idx]['id']:
-                                    buku_keuangan[idx]['judul'] = data_id
-                                    print (baru)
-                                    print("\nData Telah Diperbaharui")
-                                    menu_ketiga()
-                        elif validasi_id.lower() == "tidak":
-                            print("\nPembaharuan dibatalkan")
-                            menu_ketiga()
-                    # -------------------------------------------------------------------------
-                    elif pilihan_editBuku == '3':
-                        hasil_buku_dariId(buku_keuangan, buku_id)
-                        data_id = int(input("Masukan Judul Baru : "))
-                        validasi_id = input("Kamu yakin ingin melanjutkan?(Ya/Tidak): ")
-                        print()
-                        if validasi_id.lower() == "ya":
-                            for idx,baru in enumerate(buku_keuangan):
-                                if buku_id == buku_keuangan[idx]['id']:
-                                    buku_keuangan[idx]['tahun'] = data_id
-                                    print (baru)
-                                    print("\nData Telah Diperbaharui")
-                                    menu_ketiga()
-                        elif validasi_id.lower() == "tidak":
-                            print("\nPembaharuan dibatalkan")
-                            menu_ketiga()
-                    # -------------------------------------------------------------------------
-                    elif pilihan_editBuku == '4':
-                        hasil_buku_dariId(buku_keuangan, buku_id)
-                        data_id = input("Masukan Judul Baru : ")
-                        validasi_id = input("Kamu yakin ingin melanjutkan?(Ya/Tidak): ")
-                        print()
-                        if validasi_id.lower() == "ya":
-                            for idx,baru in enumerate(buku_keuangan):
-                                if buku_id == buku_keuangan[idx]['id']:
-                                    buku_keuangan[idx]['penulis'] = data_id
-                                    print (baru)
-                                    print("\nData Telah Diperbaharui")
-                                    menu_ketiga()
-                        elif validasi_id.lower() == "tidak":
-                            print("\nPembaharuan dibatalkan")
-                            menu_ketiga()
-                    # -------------------------------------------------------------------------
-                    elif pilihan_editBuku == '5':
-                        hasil_buku_dariId(buku_keuangan, buku_id)
-                        data_id = int(input("Masukan Judul Baru : "))
-                        validasi_id = input("Kamu yakin ingin melanjutkan?(Ya/Tidak): ")
-                        print()
-                        if validasi_id.lower() == "ya":
-                            for idx,baru in enumerate(buku_keuangan):
-                                if buku_id == buku_keuangan[idx]['id']:
-                                    buku_keuangan[idx]['stok'] = data_id
-                                    print (baru)
-                                    print("\nData Telah Diperbaharui")
-                                    menu_ketiga()
-                        elif validasi_id.lower() == "tidak":
-                            print("\nPembaharuan dibatalkan")
-                            menu_ketiga()
+        if buku_keuangan[idx]['id'] == buku_id:
+            print(buku)
+            validasi = input("\nKamu yakin ingin melanjutkan?(Ya/Tidak): ")
+            if validasi.lower() == 'tidak':
+                print("\nPembaharuan dibatalkan")
+                menu_ketiga()
+            elif validasi.lower() == 'ya':
+                print(Daftar_editKolom)
+                pilihan_editBuku = input(f"Pilih data kategori yang ingin Kamu ubah, (diantara 1 sampai 5) : ")
+                # -------------------------------------------------------------------------
+                if pilihan_editBuku == '1':
+                    hasil_buku_dariId(buku_keuangan, buku_id)
+                    data_id = input("Masukan ID Baru : ")
+                    validasi_id = input("Kamu yakin ingin melanjutkan?(Ya/Tidak): ")
+                    print()
+                    if validasi_id.lower() == "ya":
+                        for idx,baru in enumerate(buku_keuangan):
+                            if buku_id == buku_keuangan[idx]['id']:
+                                buku_keuangan[idx]['id'] = data_id
+                                print (baru)
+                                print("\nData Telah Diperbaharui")
+                                menu_ketiga()
+                    elif validasi_id.lower() == "tidak":
+                        print("\nPembaharuan dibatalkan")
+                        menu_ketiga()
+                # -------------------------------------------------------------------------
+                elif pilihan_editBuku == '2':
+                    hasil_buku_dariId(buku_keuangan, buku_id)
+                    data_id = input("Masukan Judul Baru : ")
+                    validasi_id = input("Kamu yakin ingin melanjutkan?(Ya/Tidak): ")
+                    print()
+                    if validasi_id.lower() == "ya":
+                        for idx,baru in enumerate(buku_keuangan):
+                            if buku_id == buku_keuangan[idx]['id']:
+                                buku_keuangan[idx]['judul'] = data_id
+                                print (baru)
+                                print("\nData Telah Diperbaharui")
+                                menu_ketiga()
+                    elif validasi_id.lower() == "tidak":
+                        print("\nPembaharuan dibatalkan")
+                        menu_ketiga()
+                # -------------------------------------------------------------------------
+                elif pilihan_editBuku == '3':
+                    hasil_buku_dariId(buku_keuangan, buku_id)
+                    data_id = int(input("Masukan Judul Baru : "))
+                    validasi_id = input("Kamu yakin ingin melanjutkan?(Ya/Tidak): ")
+                    print()
+                    if validasi_id.lower() == "ya":
+                        for idx,baru in enumerate(buku_keuangan):
+                            if buku_id == buku_keuangan[idx]['id']:
+                                buku_keuangan[idx]['tahun'] = data_id
+                                print (baru)
+                                print("\nData Telah Diperbaharui")
+                                menu_ketiga()
+                    elif validasi_id.lower() == "tidak":
+                        print("\nPembaharuan dibatalkan")
+                        menu_ketiga()
+                # -------------------------------------------------------------------------
+                elif pilihan_editBuku == '4':
+                    hasil_buku_dariId(buku_keuangan, buku_id)
+                    data_id = input("Masukan Judul Baru : ")
+                    validasi_id = input("Kamu yakin ingin melanjutkan?(Ya/Tidak): ")
+                    print()
+                    if validasi_id.lower() == "ya":
+                        for idx,baru in enumerate(buku_keuangan):
+                            if buku_id == buku_keuangan[idx]['id']:
+                                buku_keuangan[idx]['penulis'] = data_id
+                                print (baru)
+                                print("\nData Telah Diperbaharui")
+                                menu_ketiga()
+                    elif validasi_id.lower() == "tidak":
+                        print("\nPembaharuan dibatalkan")
+                        menu_ketiga()
+                # -------------------------------------------------------------------------
+                elif pilihan_editBuku == '5':
+                    hasil_buku_dariId(buku_keuangan, buku_id)
+                    data_id = int(input("Masukan Judul Baru : "))
+                    validasi_id = input("Kamu yakin ingin melanjutkan?(Ya/Tidak): ")
+                    print()
+                    if validasi_id.lower() == "ya":
+                        for idx,baru in enumerate(buku_keuangan):
+                            if buku_id == buku_keuangan[idx]['id']:
+                                buku_keuangan[idx]['stok'] = data_id
+                                print (baru)
+                                print("\nData Telah Diperbaharui")
+                                menu_ketiga()
+                    elif validasi_id.lower() == "tidak":
+                        print("\nPembaharuan dibatalkan")
+                        menu_ketiga()
 
 # ================================================================================================
 # untuk menu 4
@@ -346,34 +332,33 @@ def menuKeempat_hapusBuku():
         else:
             continue
 
-
-
 # ================================================================================================
 
 def menu_utama():
-    while True:
-        print(f'''
+    print(f'''
                 Selamat Datang di Perpustakaan Literasi Keuangan
         "Saya Harap Dengan Buku yang tersedia dapat menambah wawasan Kamu"
         ''')
-        print(daftar_pilihan)
+    print(daftar_pilihan)
 
-        inputan_user = int(input("Masukan angka diantara Daftar tersebut : "))
-        print()
+    inputan_user = int(input("Masukan angka diantara Daftar tersebut : "))
+    print()
 
-        if inputan_user == 1:
-            menu_pertama()
-        elif inputan_user == 2:
-            menu_kedua()
-        elif inputan_user == 3:
-            menu_ketiga()
-        elif inputan_user == 4:
-            menuKeempat_hapusBuku()
-        elif inputan_user == 5:
-            print('Senang bisa membantu Kamu, Tetaplah membaca\n')
-            break
-        else:
-            print('Menu Tidak Tersedia')
+    if inputan_user == 1:
+        menu_pertama()
+    elif inputan_user == 2:
+        menu_kedua()
+    elif inputan_user == 3:
+        menu_ketiga()
+    elif inputan_user == 4:
+        menuKeempat_hapusBuku()
+    elif inputan_user == 5:
+        print('Senang bisa membantu Kamu, Tetaplah membaca\n')
+        global x
+        x = False
+    else:
+        print('Menu Tidak Tersedia')
 
-
-menu_utama()
+x = True
+while x == True:
+    menu_utama()
