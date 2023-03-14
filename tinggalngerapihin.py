@@ -89,18 +89,23 @@ def menu_berdasarkanId():
 # -----------------------------------------------------------------------------------
 # untuk menu 1
 def menu_pertama():
-    
-    print(daftar_menuUtama)
-    inputan_user = int(input("Masukan angka (1-3) diantara daftar diatas : "))
-    print()
-    if inputan_user == 1:
-        daftar_bukuKeuangan()
+    while True:
+        print(daftar_menuUtama)
+        inputan_user = input("Masukan angka (1-3) diantara daftar diatas : ")
+        print()
+        if inputan_user == '1':
+            daftar_bukuKeuangan()
+            menu_pertama()
 
-    elif inputan_user == 2:
-        daftar_bukuKeuangan()
-        menu_berdasarkanId()
-    else:
-        menu_utama()
+        elif inputan_user == '2':
+            daftar_bukuKeuangan()
+            menu_berdasarkanId()
+        # elif inputan_user != inputan_user:        
+        elif inputan_user == '3':
+            menu_utama()
+        else:
+            menu_pertama()
+        break
 
 # ================================================================================================
 # untuk menu 2
@@ -116,7 +121,7 @@ def menu_kedua():
     print(Opsi_tambahBuku)
     inputan_user = (input("Masukan data Buku, tolong pilih diantara (1/2) : "))
     if inputan_user == '1':
-        print('menuKedua_tambahBuku')
+        print()
         menuKedua_tambahBuku()
 
     elif inputan_user == '2':
@@ -153,6 +158,7 @@ def menuKedua_tambahBuku():
         if inputan_user.lower() == 'ya':
             buku_keuangan.append(bukuBaru)
             print("Data Tersimpan")
+            menu_kedua()
         elif inputan_user.lower() == 'tidak':
             menuKedua_tambahBuku()
 # ================================================================================================
@@ -238,7 +244,7 @@ def menuKetiga_perbaharuiBuku():
                 # -------------------------------------------------------------------------
                 elif pilihan_editBuku == '3':
                     hasil_buku_dariId(buku_keuangan, buku_id)
-                    data_id = int(input("Masukan Judul Baru : "))
+                    data_id = int(input("Masukan Tahun Baru : "))
                     validasi_id = input("Kamu yakin ingin melanjutkan?(Ya/Tidak): ")
                     print()
                     if validasi_id.lower() == "ya":
@@ -254,7 +260,7 @@ def menuKetiga_perbaharuiBuku():
                 # -------------------------------------------------------------------------
                 elif pilihan_editBuku == '4':
                     hasil_buku_dariId(buku_keuangan, buku_id)
-                    data_id = input("Masukan Judul Baru : ")
+                    data_id = input("Masukan Penulis Baru : ")
                     validasi_id = input("Kamu yakin ingin melanjutkan?(Ya/Tidak): ")
                     print()
                     if validasi_id.lower() == "ya":
@@ -270,7 +276,7 @@ def menuKetiga_perbaharuiBuku():
                 # -------------------------------------------------------------------------
                 elif pilihan_editBuku == '5':
                     hasil_buku_dariId(buku_keuangan, buku_id)
-                    data_id = int(input("Masukan Judul Baru : "))
+                    data_id = int(input("Masukan Stok Baru : "))
                     validasi_id = input("Kamu yakin ingin melanjutkan?(Ya/Tidak): ")
                     print()
                     if validasi_id.lower() == "ya":
@@ -336,8 +342,9 @@ def menuKeempat_hapusBuku():
 
 def menu_utama():
     print(f'''
-                Selamat Datang di Perpustakaan Literasi Keuangan
-        "Saya Harap Dengan Buku yang tersedia dapat menambah wawasan Kamu"
+        ------------------------------------------------------------------
+            Selamat Datang di Aplikasi Perpustakaan Literasi Keuangan
+        ------------------------------------------------------------------
         ''')
     print(daftar_pilihan)
 
@@ -353,7 +360,7 @@ def menu_utama():
     elif inputan_user == 4:
         menuKeempat_hapusBuku()
     elif inputan_user == 5:
-        print('Senang bisa membantu Kamu, Tetaplah membaca\n')
+        print('Senang bisa membantu Kamu, Kritik Dan Saran Hub: 085773127388\n')
         global x
         x = False
     else:
