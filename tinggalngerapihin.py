@@ -3,8 +3,8 @@
 
 buku_keuangan = [
     {'id':'01', 'judul':'Rich Dad Poor Dad', 'tahun':1997, 'penulis':'Robert T. Kiyosaki', 'stok':5},
-    {'id':'02', 'judul':'The Psychology of Money', 'tahun':2020, 'penulis':'Morgan Housel', 'stok':4},
-    {'id':'03', 'judul':'Warren Buffett Wisdom', 'tahun':2013, 'penulis':'Lukas Setia Atmaja', 'stok':1},
+    {'id':'02', 'judul':'Psychology ofMoney', 'tahun':2020, 'penulis':'Morgan Housel  ', 'stok':4},
+    {'id':'03', 'judul':'cashflow quadrant', 'tahun':1998, 'penulis':'Robert T. Kiyosaki', 'stok':10},
     {'id':'04', 'judul':'Think and Grow Rich', 'tahun':1937, 'penulis':'Georde Goodman', 'stok':2}
 ]
 
@@ -12,19 +12,17 @@ buku_keuangan = [
 # untuk menu 1
 def daftar_bukuKeuangan():
     print("\tDaftar Buku")
-    print("ID\t| Judul \t\t\t\t| Tahun\t| Penulis\t\t Stok\t")
+    print("ID\t| Judul \t\t\t| Tahun\t| Penulis\t\t Stok\t")
     for idx in range(len(buku_keuangan)):
-        print(f"{buku_keuangan[idx]['id']} \t| {buku_keuangan[idx]['judul']} \t\t\t| {buku_keuangan[idx]['tahun']}\t| {buku_keuangan[idx]['penulis']}\t {buku_keuangan[idx]['stok']}")
-
+        print(f"{buku_keuangan[idx]['id']} \t| {buku_keuangan[idx]['judul']} \t\t| {buku_keuangan[idx]['tahun']}\t| {buku_keuangan[idx]['penulis']}\t {buku_keuangan[idx]['stok']}")
 # ================================================================================================
 # untuk menu 2
 def bukuTambahan():
-    # print("ID\t| Judul \t\t\t\t| Tahun\t| Penulis\t\t Stok\t")
+    print("ID\t| Judul \t\t\t\t| Tahun\t| Penulis\t\t Stok\t")
     for buku in buku_keuangan:
         print(f"{buku['id']} \t| {buku['judul']} \t\t| {buku['tahun']}\t| {buku['penulis']}\t {buku['stok']}")
-    #     return True
-    # return False
-
+        return True
+    return False
 # ================================================================================================
 # menu utama bukan menu pilihan
 daftar_pilihan = ('''
@@ -60,8 +58,8 @@ Daftar_editKolom = ('''
 def hasil_buku_dariId(buku_keuangan, buku_id):
     for buku in buku_keuangan:
         if buku['id'] == buku_id:
-            # print(f"ID \t Judul \t\t\t\t Tahun \t Penulis \t Stok")
-            print(f"\n{buku['id']} \t {buku['judul']} \t {buku['tahun']} \t {buku['penulis']} \t {buku['stok']} \n")
+            print(f"\nID \t Judul \t\t\t\tTahun \t Penulis \t\t Stok")
+            print(f"{buku['id']} \t {buku['judul']}\t\t{buku['tahun']}\t {buku['penulis']} \t {buku['stok']} \n")
     #         return True
     # return False
 
@@ -137,30 +135,37 @@ def menu_kedua():
 # untuk menu 2
 def menuKedua_tambahBuku():
     id_baru = input("Masukan ID baru : ")
+    while True:
+        if id_baru.isdigit():
 
-    list_id = []
+            list_id = []
 
-    for buku in buku_keuangan:
-        list_id.append(buku['id'])
+            for buku in buku_keuangan:
+                list_id.append(buku['id'])
 
-    if id_baru in list_id:
-        print('\nID Buku tersebut sudah tersedia, tolong masukan ID baru \n')
-        menu_kedua()
+            if id_baru in list_id:
+                print('\nID Buku tersebut sudah tersedia, tolong masukan ID baru \n')
+                menu_kedua()
 
-    else:
-        judul = input("Masukan Judul Buku : ")
-        tahun = input("Masukan Tahun Buku : ")
-        penulis = input("Masukan Penulis Buku : ")
-        stok = input("Masukan Jumlah Buku : ")
-        bukuBaru = {'id':id_baru, 'judul':judul, 'tahun': tahun, 'penulis': penulis, 'stok':stok}
-        print(bukuBaru)
-        inputan_user = input("Yakin ingin menambahkan(Ya/Tidak) : ")
-        if inputan_user.lower() == 'ya':
-            buku_keuangan.append(bukuBaru)
-            print("Data Tersimpan")
-            menu_kedua()
-        elif inputan_user.lower() == 'tidak':
-            menuKedua_tambahBuku()
+            else:
+                judul = input("Masukan Judul Buku : ")
+                tahun = input("Masukan Tahun Buku : ")
+                penulis = input("Masukan Penulis Buku : ")
+                stok = input("Masukan Jumlah Buku : ")
+                bukuBaru = {'id':id_baru, 'judul':judul, 'tahun': tahun, 'penulis': penulis, 'stok':stok}
+                print(bukuBaru)
+                inputan_user = input("\nYakin ingin menambahkan(Ya/Tidak) : ")
+                if inputan_user.lower() == 'ya':
+                    buku_keuangan.append(bukuBaru)
+                    print("Data Tersimpan")
+                    menu_kedua()
+                elif inputan_user.lower() == 'tidak':
+                    menuKedua_tambahBuku()
+            break
+        else:
+            print('\nPastikan Kamu memasukan Angka!\n')
+            id_baru = input("Masukan ID baru : ")
+            
 # ================================================================================================
 # untuk menu 3
 opsi_editBuku = ('''
@@ -300,7 +305,7 @@ Opsi_menghapusBuku = ('''
 
 # -----------------------------------------------------------------------------------
 # untuk menu 4
-def menuKeempat_hapusBuku():
+def menu_keempat():
     while True:
         print(Opsi_menghapusBuku)
         inputan_user = int(input("\n Pilih angka diantara (1/2) : "))
@@ -326,7 +331,7 @@ def menuKeempat_hapusBuku():
                             print("\n Data Tidak Berhasil Dihapus")
                             break
                 print('\n')
-                menuKeempat_hapusBuku()
+                menu_keempat()
                 break
 
             else:
@@ -358,7 +363,7 @@ def menu_utama():
     elif inputan_user == 3:
         menu_ketiga()
     elif inputan_user == 4:
-        menuKeempat_hapusBuku()
+        menu_keempat()
     elif inputan_user == 5:
         print('Senang bisa membantu Kamu, Kritik Dan Saran Hub: 085773127388\n')
         global x
