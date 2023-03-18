@@ -1,12 +1,17 @@
 # Haryo Dewantoro
 # Aplikasi Perpustakaan
 
+import math
+
 buku_keuangan = [
     {'id':'01', 'judul':'Rich Dad Poor Dad', 'tahun':1997, 'penulis':'Robert T. Kiyosaki', 'stok':5},
     {'id':'02', 'judul':'Psychology ofMoney', 'tahun':2020, 'penulis':'Morgan Housel  ', 'stok':4},
     {'id':'03', 'judul':'cashflow quadrant', 'tahun':1998, 'penulis':'Robert T. Kiyosaki', 'stok':10},
     {'id':'04', 'judul':'Think and Grow Rich', 'tahun':1937, 'penulis':'Georde Goodman', 'stok':2}
 ]
+
+
+
 # ================================================================================================
 # untuk menu 1
 def daftar_bukuKeuangan():
@@ -128,9 +133,6 @@ def menu_kedua():
         print
         print("Tolong masukan angka yang tersedia : ")
         menu_kedua()
-        
-
-    
 
 # -----------------------------------------------------------------------------------
 # untuk menu 2
@@ -150,12 +152,34 @@ def menuKedua_tambahBuku():
 
             else:
                 judul = input("Masukan Judul Buku : ")
+                len_penulis = len(judul)
+                if len_penulis > 18:
+                    print(f'\nKarakter Maksimal 18, Karakter Kalimat Kamu {len_penulis}')
+                    menu_kedua()
+                elif len_penulis < 18:
+                    hitungan = len_penulis - 18
+                    hasil = math.fabs(hitungan)
+                    spasi = ' ' * int(hasil)
+                    tambahan_karakter = judul + spasi
                 tahun = input("Masukan Tahun Buku : ")
+                if len(tahun) > 4:
+                    print(f'\nKarakter Maksimal 4, Karakter Kalimat Kamu {len(tahun)}')
+                    menu_kedua()
                 penulis = input("Masukan Penulis Buku : ")
+                if len(penulis) > 18:
+                    print(f'\nKarakter Maksimal 18, Karakter Kalimat Kamu {len_penulis}')
+                    menu_kedua()
+                elif len(penulis) < 18:
+                    hitungan = len(penulis) - 18
+                    hasil = math.fabs(hitungan)
+                    spasi = ' ' * int(hasil)
+                    tambahan_penulis = penulis + spasi
                 stok = input("Masukan Jumlah Buku : ")
                 print()
-                bukuBaru = {'id':id_baru, 'judul':judul, 'tahun': tahun, 'penulis': penulis, 'stok':stok}
+                bukuBaru = {'id':id_baru, 'judul':tambahan_karakter, 'tahun': tahun, 'penulis': tambahan_penulis, 'stok':stok}
                 print(bukuBaru)
+
+                # --------------------------------------------------------------------------------
                 inputan_user = input("\nYakin ingin menambahkan(Ya/Tidak) : ")
                 if inputan_user.lower() == 'ya':
                     buku_keuangan.append(bukuBaru)
