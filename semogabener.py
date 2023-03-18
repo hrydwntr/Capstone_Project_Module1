@@ -7,7 +7,6 @@ buku_keuangan = [
     {'id':'03', 'judul':'cashflow quadrant', 'tahun':1998, 'penulis':'Robert T. Kiyosaki', 'stok':10},
     {'id':'04', 'judul':'Think and Grow Rich', 'tahun':1937, 'penulis':'Georde Goodman', 'stok':2}
 ]
-
 # ================================================================================================
 # untuk menu 1
 def daftar_bukuKeuangan():
@@ -81,7 +80,8 @@ def menu_berdasarkanId():
             
 
     else:
-        print('\nBuku tidak ditemukan, Pastikan ID benar')
+        if keyId != keyId.isdigit:
+            print('\nBuku tidak ditemukan, Pastikan ID benar')
     menu_pertama()
 
 # -----------------------------------------------------------------------------------
@@ -125,6 +125,7 @@ def menu_kedua():
     elif inputan_user == '2':
         menu_utama()
     else:
+        print
         print("Tolong masukan angka yang tersedia : ")
         menu_kedua()
         
@@ -152,11 +153,13 @@ def menuKedua_tambahBuku():
                 tahun = input("Masukan Tahun Buku : ")
                 penulis = input("Masukan Penulis Buku : ")
                 stok = input("Masukan Jumlah Buku : ")
+                print()
                 bukuBaru = {'id':id_baru, 'judul':judul, 'tahun': tahun, 'penulis': penulis, 'stok':stok}
                 print(bukuBaru)
                 inputan_user = input("\nYakin ingin menambahkan(Ya/Tidak) : ")
                 if inputan_user.lower() == 'ya':
                     buku_keuangan.append(bukuBaru)
+                    print()
                     print("Data Tersimpan")
                     menu_kedua()
                 elif inputan_user.lower() == 'tidak':
@@ -218,6 +221,9 @@ def menuKetiga_perbaharuiBuku():
                 if pilihan_editBuku == '1':
                     hasil_buku_dariId(buku_keuangan, buku_id)
                     data_id = input("Masukan ID Baru : ")
+                    if data_id in list_id:
+                        print('\nID Buku tersebut sudah tersedia, tolong masukan ID baru \n')
+                        menuKetiga_perbaharuiBuku()    
                     validasi_id = input("Kamu yakin ingin melanjutkan?(Ya/Tidak): ")
                     print()
                     if validasi_id.lower() == "ya":
