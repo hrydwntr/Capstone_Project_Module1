@@ -5,7 +5,7 @@ import math
 
 daftar_buku_keuangan = [
     {'id':'01', 'judul':'Rich Dad Poor Dad', 'tahun':1997, 'penulis':'Robert T. Kiyosaki', 'stok':5},
-    {'id':'02', 'judul':'Psychology ofMoney', 'tahun':2020, 'penulis':'Morgan Housel  ', 'stok':4},
+    {'id':'02', 'judul':'Psychology of Money', 'tahun':2020, 'penulis':'Morgan Housel  ', 'stok':4},
     {'id':'03', 'judul':'cashflow quadrant', 'tahun':1998, 'penulis':'Robert T. Kiyosaki', 'stok':10},
     {'id':'04', 'judul':'Think and Grow Rich', 'tahun':1937, 'penulis':'Georde Goodman', 'stok':2}
 ]
@@ -175,9 +175,9 @@ def menambah_data_buku():
                     hasil_penulis = penulis + spasi
                 stok = input("Masukan Jumlah Buku : ")
                 print()
-                buku_baru = (f'ID : {new_primary_key} | Judul : {hasil_judul} | Tahun : {tahun} | Penulis : {hasil_penulis} | Stok : {stok}')
+                buku_baru = (f'ID : {new_primary_key} | Judul : {hasil_judul.title()} | Tahun : {tahun} | Penulis : {hasil_penulis.title()} | Stok : {stok}')
                 print(buku_baru)
-                buku_baru = {'id':new_primary_key, 'judul':hasil_judul, 'tahun': tahun, 'penulis': hasil_penulis, 'stok':stok}
+                buku_baru = {'id':new_primary_key, 'judul':hasil_judul.title(), 'tahun': tahun, 'penulis': hasil_penulis.title(), 'stok':stok}
 
                 # --------------------------------------------------------------------------------
                 user_masukan_menu = input("\nYakin ingin menambahkan(Ya/Tidak) : ")
@@ -283,7 +283,7 @@ def mengubah_data_buku():
                     if validasi_id.lower() == "ya":
                         for idx,baru in enumerate(daftar_buku_keuangan):
                             if primary_key == daftar_buku_keuangan[idx]['id']:
-                                daftar_buku_keuangan[idx]['judul'] = hasil_judul
+                                daftar_buku_keuangan[idx]['judul'] = hasil_judul.title()
                                 print (baru)
                                 print("\nData Telah Diperbaharui")
                                 menu_ubah_data()
@@ -339,7 +339,7 @@ def mengubah_data_buku():
                     if validasi_id.lower() == "ya":
                         for idx,baru in enumerate(daftar_buku_keuangan):
                             if primary_key == daftar_buku_keuangan[idx]['id']:
-                                daftar_buku_keuangan[idx]['penulis'] = hasil_penulis
+                                daftar_buku_keuangan[idx]['penulis'] = hasil_penulis.title()
                                 print (baru)
                                 print("\nData Telah Diperbaharui")
                                 menu_ubah_data()
