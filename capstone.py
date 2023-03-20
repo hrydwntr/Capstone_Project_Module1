@@ -6,7 +6,7 @@ import math
 daftar_buku_keuangan = [
     {'id':'01', 'judul':'Rich Dad Poor Dad', 'tahun':1997, 'penulis':'Robert T. Kiyosaki', 'stok':5},
     {'id':'02', 'judul':'Psychology of Money', 'tahun':2020, 'penulis':'Morgan Housel  ', 'stok':4},
-    {'id':'03', 'judul':'cashflow quadrant', 'tahun':1998, 'penulis':'Robert T. Kiyosaki', 'stok':10},
+    {'id':'03', 'judul':'Cashflow Quadrant', 'tahun':1998, 'penulis':'Robert T. Kiyosaki', 'stok':10},
     {'id':'04', 'judul':'Think and Grow Rich', 'tahun':1937, 'penulis':'Georde Goodman', 'stok':2}
 ]
 
@@ -154,10 +154,10 @@ def menambah_data_buku():
             else:
                 judul = input("Masukan Judul Buku : ")
                 panjang_karakter = len(judul)
-                if  panjang_karakter > 18:
+                if  panjang_karakter >= 18:
                     print(f'\nKarakter Maksimal 18, Karakter Kalimat Kamu {panjang_karakter}')
                     menu_menambah_data()
-                elif panjang_karakter <= 18:
+                elif panjang_karakter < 18:
                     hitungan = panjang_karakter - 18
                     pembulatan = math.fabs(hitungan)
                     spasi = ' ' * int(pembulatan)
@@ -167,7 +167,7 @@ def menambah_data_buku():
                     print(f'\nKarakter Maksimal 4, Karakter Kalimat Kamu {len(tahun)}')
                     menu_menambah_data()
                 penulis = input("Masukan Penulis Buku : ")
-                if len(penulis) > 18:
+                if len(penulis) >= 18:
                     print(f'\nKarakter Maksimal 18, Karakter Kalimat Kamu {panjang_karakter}')
                     menu_menambah_data()
                 elif len(penulis) < 18:
@@ -201,7 +201,6 @@ daftar_menu_ubah_data = ('''
     Halaman Edit Buku : 
     1. Edit Informasi Buku
     2. Kembali
-
 ''')
 
 # -----------------------------------------------------------------------------------
@@ -272,7 +271,7 @@ def mengubah_data_buku():
                 elif pilihan_mengubah_buku == '2':
                     buku_dari_id(daftar_buku_keuangan, primary_key)
                     data_judul = input("Masukan Judul Baru : ")
-                    if len(data_judul) > 18:
+                    if len(data_judul) >= 18:
                         print(f'\nKarakter Maksimal 18, Karakter Kalimat Kamu {len(data_judul)}')
                         menu_ubah_data()
                     elif len(data_judul) < 18:
@@ -286,7 +285,7 @@ def mengubah_data_buku():
                         for idx,baru in enumerate(daftar_buku_keuangan):
                             if primary_key == daftar_buku_keuangan[idx]['id']:
                                 daftar_buku_keuangan[idx]['judul'] = hasil_judul.title()
-                                print (baru)
+                                print(baru)
                                 print("\nData Telah Diperbaharui")
                                 menu_ubah_data()
                     elif validasi_id.lower() == "tidak":
@@ -301,7 +300,7 @@ def mengubah_data_buku():
                     data_tahun = input("Masukan Tahun Baru : ")
                     while True:
                         if data_tahun.isdigit():
-                            if int(data_tahun) > 9999:
+                            if int(data_tahun) >= 9999:
                                 print(f'\nMaksimal 4 Angka')
                                 menu_ubah_data()
                             elif int(data_tahun) < 9999:
@@ -329,7 +328,7 @@ def mengubah_data_buku():
                 elif pilihan_mengubah_buku == '4':
                     buku_dari_id(daftar_buku_keuangan, primary_key)
                     data_penulis = input("Masukan Penulis Baru : ")
-                    if len(data_penulis) > 18:
+                    if len(data_penulis) >= 18:
                         print(f'Karakter Maksimal 18, Karakter Kalimat Kamu {len(data_penulis)}')
                         menu_ubah_data()
                     elif len(data_penulis) < 18:
