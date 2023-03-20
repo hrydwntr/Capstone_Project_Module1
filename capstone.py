@@ -423,7 +423,7 @@ def menu_hapus_data():
             break
         else:
             # continue
-            menu_hapus_data()
+            print('data tidak ditemukan')
 
 # ================================================================================================
 
