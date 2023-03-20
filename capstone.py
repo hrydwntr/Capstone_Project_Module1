@@ -106,6 +106,8 @@ def menu_baca_data():
         elif user_masukan_menu == '3':
             menu_utama()
         else:
+            print()
+            print('Tidak Ada Data')
             menu_baca_data()
         break
 
@@ -371,6 +373,7 @@ def mengubah_data_buku():
                         menu_ubah_data()
                     else:
                         menu_ubah_data()
+    print('Data yang anda cari tidak ada')
     menu_ubah_data()
 
 # ================================================================================================
@@ -420,6 +423,7 @@ def menu_hapus_data():
             break
         else:
             # continue
+            print('Data yang anda cari tidak ada')
             menu_hapus_data()
 
 # ================================================================================================
@@ -448,7 +452,7 @@ def menu_utama():
         global x
         x = False
     else:
-        print('Menu Tidak Tersedia')
+        print('Pilihan yang anda masukan salah')
 
 x = True
 while x == True:
