@@ -113,7 +113,7 @@ def menu_baca_data():
 
 # ================================================================================================
 # untuk menu 2
-daftar_menu_menambah_data = (''''
+daftar_menu_menambah_data = ('''
     Halaman Tambah Buku :
     1. Tambah Buku Baru
     2. Kembali
@@ -423,7 +423,6 @@ def menu_hapus_data():
             break
         else:
             # continue
-            print('Data yang anda cari tidak ada')
             menu_hapus_data()
 
 # ================================================================================================
