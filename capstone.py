@@ -25,8 +25,8 @@ def bukuTambahan():
     print("ID\t| Judul \t\t\t\t| Tahun\t| Penulis\t\t Stok\t")
     for buku in daftar_buku_keuangan:
         print(f"{buku['id']} \t| {buku['judul']} \t\t| {buku['tahun']}\t| {buku['penulis']}\t {buku['stok']}")
-        return True
-    return False
+    #     return True
+    # return False
 # ================================================================================================
 # menu utama bukan menu pilihan
 daftar_pilihan = ('''
@@ -92,7 +92,6 @@ def menampilkan_salahsatu_id():
 # -----------------------------------------------------------------------------------
 # untuk menu 1
 def menu_baca_data():
-    while True:
         print(daftar_menu_baca_data)
         user_masukan_menu = input("Masukan angka (1-3) diantara daftar diatas : ")
         print()
@@ -109,7 +108,6 @@ def menu_baca_data():
             print()
             print('Tidak Ada Data')
             menu_baca_data()
-        break
 
 # ================================================================================================
 # untuk menu 2
@@ -421,8 +419,8 @@ def menu_hapus_data():
         elif user_masukan_menu == "2":
             break
         else:
-            # continue
-            print('data tidak ditemukan')
+            continue
+            # print('data tidak ditemukan')
 
 # ================================================================================================
 
